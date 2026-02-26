@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kruthik Reddy | Builder</title>
+    <title>Kruthik Reddy</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script>
-        // Theme toggle logic
         tailwind.config = {
             darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { mono: ['JetBrains Mono', 'monospace'] },
+                }
+            }
         }
         function toggleTheme() {
             document.documentElement.classList.toggle('dark');
@@ -17,84 +21,93 @@
         }
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; }
-        .section-title { font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; }
+        body { font-family: 'JetBrains Mono', monospace; letter-spacing: -0.02em; }
+        /* The Binary Background Pattern */
+        .bg-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='30' font-family='monospace' font-size='8' opacity='0.05'%3E01101001 01110100%3C/text%3E%3Ctext x='10' y='60' font-family='monospace' font-size='8' opacity='0.05'%3E01101111 01101110%3C/text%3E%3C/svg%3E");
+        }
+        .tag { border: 1px solid #e5e5e5; border-radius: 6px; padding: 2px 8px; font-size: 0.7rem; text-transform: uppercase; color: #666; }
+        .dark .tag { border-color: #262626; color: #a3a3a3; }
+        .underlined { border-bottom: 1px dashed #ccc; }
+        .dark .underlined { border-bottom-color: #404040; }
     </style>
 </head>
-<body class="dark:bg-[#0a0a0a] bg-white dark:text-neutral-200 text-neutral-900 max-w-2xl mx-auto px-6 py-20">
+<body class="dark:bg-[#0a0a0a] bg-[#fafaf9] dark:text-[#d4d4d4] text-[#171717] min-h-screen bg-pattern transition-colors duration-300">
 
-    <div class="flex justify-end mb-8">
-        <button onclick="toggleTheme()" class="p-2 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition">
-            <span class="dark:hidden">🌙 Dark</span>
-            <span class="hidden dark:inline">☀️ Light</span>
-        </button>
+    <div class="max-w-xl mx-auto px-6 py-16">
+        
+        <nav class="flex justify-between items-center mb-12">
+            <button onclick="toggleTheme()" class="text-xs opacity-50 hover:opacity-100 uppercase tracking-widest">
+                [ Switch Theme ]
+            </button>
+            <span class="text-xs opacity-50 uppercase tracking-widest">(Hyderabad, India)</span>
+        </nav>
+
+        <header class="mb-12">
+            <div class="flex justify-between items-start mb-4">
+                <h1 class="text-xl font-medium">kruthik reddy</h1>
+                <span class="text-xs opacity-50">building things.</span>
+            </div>
+            <div class="flex gap-2 mb-6">
+                <span class="tag">MPC STUDENT</span>
+                <span class="tag">BUILDER</span>
+                <span class="tag">17 Y/O</span>
+            </div>
+            <p class="text-lg italic">ships really <span class="font-bold">fast.</span></p>
+        </header>
+
+        <section class="mb-12">
+            <h2 class="font-bold mb-4">today</h2>
+            <div class="space-y-4 leading-relaxed">
+                <p>I'm a builder in disguise. Currently an 11th-grade MPC student grinding through physics problems and calculus limits.</p>
+                <p>In reality, I’m running simulations about wealth, leverage, and how to <span class="underlined">bend the internet to my will</span>.</p>
+                <p>I enjoy <span class="underlined">reverse engineering</span>, strategy, and building systems that give me control over my direction.</p>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="font-bold mb-4">past</h2>
+            <div class="space-y-3 text-sm">
+                <div class="flex items-center gap-2">
+                    <span class="opacity-50 text-[10px]">●</span>
+                    <span class="underlined italic">Bhashyam Blooms</span>, 10th Grade (Class of 2025)
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="opacity-50 text-[10px]">●</span>
+                    <span>Self-taught automation & productivity tools</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <h2 class="font-bold mb-4">personal projects</h2>
+            <div class="space-y-4">
+                <div class="flex justify-between items-center border-b border-neutral-200 dark:border-neutral-800 pb-2">
+                    <span class="font-medium">the control center</span>
+                    <div class="flex gap-2">
+                        <span class="tag">AI</span> <span class="tag">UI</span>
+                    </div>
+                </div>
+                <p class="text-xs opacity-60">Dark-aesthetic suite with AI chat, focus timers, and productivity tools.</p>
+            </div>
+        </section>
+
+        <div class="fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-md">
+            <div class="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border border-neutral-200 dark:border-neutral-800 rounded-2xl p-4 shadow-xl flex justify-between items-center">
+                <span class="text-xs opacity-50 px-2">Ask about me or send a message!</span>
+                <div class="flex gap-2 items-center">
+                    <span class="text-[10px] opacity-30">⌘ K</span>
+                    <a href="https://instagram.com/kruthikreddy_" target="_blank" class="bg-black dark:bg-white text-white dark:text-black p-2 rounded-xl text-xs">Insta</a>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <header class="mb-16">
-        <h1 class="text-3xl font-semibold mb-2 tracking-tight">Kruthik Reddy</h1>
-        <p class="text-neutral-500 dark:text-neutral-400">Builder & MPC Student • Hyderabad, India</p>
-    </header>
-
-    <section class="mb-16">
-        <h2 class="section-title text-neutral-400">About</h2>
-        <div class="space-y-4 leading-relaxed text-neutral-700 dark:text-neutral-300">
-            <p>
-                I am a builder in disguise. On paper, a 17-year-old 11th-grade MPC student grinding through physics and calculus. In reality, I'm reverse-engineering systems—searching for leverage, strategy, and optionality.
-            </p>
-            <p>
-                I don't just want marks; I want independence. I study best when there is a clear target and a system to dismantle. I’m a creator of tools, not just a consumer of them.
-            </p>
-        </div>
-    </section>
-
-    <section class="mb-16">
-        <h2 class="section-title text-neutral-400">Background</h2>
-        <div class="space-y-6">
-            <div class="flex justify-between items-baseline">
-                <div>
-                    <h3 class="font-medium text-neutral-900 dark:text-white">Bhashyam Blooms</h3>
-                    <p class="text-neutral-500 text-sm">Completed 10th Grade</p>
-                </div>
-                <span class="text-neutral-400 text-xs">Class of 2023</span>
-            </div>
-            <div class="flex justify-between items-baseline">
-                <div>
-                    <h3 class="font-medium text-neutral-900 dark:text-white">MPC Student (Grade 11)</h3>
-                    <p class="text-neutral-500 text-sm">Focusing on Physics & Calculus</p>
-                </div>
-                <span class="text-neutral-400 text-xs">Present</span>
-            </div>
-        </div>
-    </section>
-
-    <section class="mb-16">
-        <h2 class="section-title text-neutral-400">The Lab</h2>
-        <div class="grid grid-cols-1 gap-4">
-            <div class="block p-5 border border-neutral-100 dark:border-neutral-800 rounded-xl bg-neutral-50/50 dark:bg-neutral-900/50">
-                <h3 class="font-medium text-neutral-900 dark:text-white">The Control Center</h3>
-                <p class="text-neutral-500 dark:text-neutral-400 text-sm mt-1">
-                    A dark-aesthetic suite featuring AI chat, focus timers, and productivity systems designed for deep work.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <footer class="text-neutral-400 text-sm border-t border-neutral-100 dark:border-neutral-900 pt-8">
-        <div class="flex gap-6">
-            <a href="https://instagram.com/kruthikreddy_" target="_blank" class="hover:text-black dark:hover:text-white transition">Instagram</a>
-            <a href="mailto:your-email@gmail.com" class="hover:text-black dark:hover:text-white transition">Email</a>
-        </div>
-        <p class="mt-8 text-[10px] uppercase tracking-widest opacity-50">© 2024 KRUTHIK REDDY</p>
-    </footer>
-
     <script>
-        // Set initial theme
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark')
-        } else {
-            document.documentElement.classList.remove('dark')
         }
     </script>
 </body>
-  </html>
-  
+</html>
