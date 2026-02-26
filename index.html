@@ -13,15 +13,13 @@
             background-color: #fafaf9; 
             color: #171717;
         }
-        /* Binary Background Pattern */
         .bg-pattern {
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='30' font-family='monospace' font-size='8' fill='%23000' opacity='0.03'%3E01101001 01110100%3C/text%3E%3Ctext x='10' y='60' font-family='monospace' font-size='8' fill='%23000' opacity='0.03'%3E01101111 01101110%3C/text%3E%3C/svg%3E");
         }
-        /* Wavy Underline Style */
         .wavy {
             text-decoration: underline;
             text-decoration-style: wavy;
-            text-decoration-color: #ccc;
+            text-decoration-color: #d4d4d4;
             text-underline-offset: 4px;
         }
         .tag { 
@@ -31,11 +29,6 @@
             font-size: 0.7rem; 
             text-transform: uppercase; 
             color: #737373; 
-        }
-        .section-header {
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
         }
     </style>
 </head>
@@ -53,20 +46,20 @@
                 <span class="tag">BUILDER</span>
                 <span class="tag">17 Y/O</span>
             </div>
-            <p class="text-lg italic">ships really <span class="font-bold">fast.</span></p>
+            <p class="text-lg italic font-medium">ships really <span class="not-italic font-bold">fast.</span></p>
         </header>
 
         <section class="mb-12">
-            <h2 class="section-header">today</h2>
+            <h2 class="font-bold mb-4">today</h2>
             <div class="space-y-4 leading-relaxed">
                 <p>I'm a builder in disguise. Currently an 11th-grade MPC student grinding through physics problems and calculus limits.</p>
                 <p>In reality, I’m running simulations about wealth, leverage, and how to <span class="wavy">bend the internet to my will</span>.</p>
-                <p>I built my own <span class="wavy">dark-aesthetic website</span> with AI chat, focus timers, and productivity tools because I like control.</p>
+                <p>I built my own <span class="wavy">dark-aesthetic website</span> with AI chat and productivity tools because I like control.</p>
             </div>
         </section>
 
         <section class="mb-12">
-            <h2 class="section-header">past</h2>
+            <h2 class="font-bold mb-4">past</h2>
             <div class="space-y-3">
                 <div class="flex items-center gap-2">
                     <span class="opacity-30 text-[10px]">●</span>
@@ -76,36 +69,50 @@
         </section>
 
         <section class="mb-12">
-            <h2 class="section-header">personal projects</h2>
-            <div class="space-y-4">
-                <div class="flex justify-between items-center border-b border-neutral-200 pb-2">
-                    <span class="font-medium">the control center</span>
-                    <div class="flex gap-2">
-                        <span class="tag">AI</span> <span class="tag">PRODUCTIVITY</span>
+            <h2 class="font-bold mb-4">personal projects</h2>
+            <div class="space-y-6">
+                <div>
+                    <div class="flex justify-between items-center border-b border-neutral-200 pb-2 mb-2">
+                        <a href="https://kruthikreddy5.github.io/Kruthik-Arena-/" target="_blank" class="font-medium hover:text-blue-600 transition underline underline-offset-4 decoration-neutral-200">kruthik arena</a>
+                        <div class="flex gap-2">
+                            <span class="tag">LIVE</span> <span class="tag">HUB</span>
+                        </div>
                     </div>
+                    <p class="text-xs opacity-60">A centralized project hub and testing ground for my web experiments.</p>
+                </div>
+
+                <div>
+                    <div class="flex justify-between items-center border-b border-neutral-200 pb-2 mb-2">
+                        <span class="font-medium">the control center</span>
+                        <div class="flex gap-2">
+                            <span class="tag">AI</span> <span class="tag">SYSTEMS</span>
+                        </div>
+                    </div>
+                    <p class="text-xs opacity-60">A suite with AI chat and focus timers designed for high-leverage work.</p>
                 </div>
             </div>
         </section>
 
         <section class="mb-20">
-            <h2 class="section-header">connect</h2>
+            <h2 class="font-bold mb-4">connect</h2>
             <div class="space-y-3">
                 <div class="flex items-center gap-2">
-                    <span class="text-xs opacity-50">IG</span>
-                    <a href="https://instagram.com/kruthikreddy_" target="_blank" class="wavy hover:text-blue-600 transition">kruthikreddy_</a>
+                    <span class="text-xs opacity-50 w-6">IG</span>
+                    <a href="https://instagram.com/kruthikreddy_" target="_blank" class="wavy hover:text-black transition">kruthikreddy_</a>
                 </div>
                 <div class="flex items-center gap-2">
-                    <span class="text-xs opacity-50">EM</span>
-                    <a href="mailto:kruthikreddy5850@gmail.com" class="wavy hover:text-blue-600 transition">kruthikreddy5850@gmail.com</a>
+                    <span class="text-xs opacity-50 w-6">EM</span>
+                    <a href="mailto:kruthikreddy5850@gmail.com" class="wavy hover:text-black transition">kruthikreddy5850@gmail.com</a>
                 </div>
             </div>
         </section>
 
-        <footer class="pt-8 opacity-30 text-[10px] uppercase tracking-[0.2em]">
+        <footer class="pt-8 opacity-20 text-[10px] uppercase tracking-[0.2em]">
             © 2026 KRUTHIK REDDY — MADE IN HYD
         </footer>
 
     </div>
 
 </body>
-</html>
+    </html>
+    
