@@ -3,116 +3,406 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kruthik Reddy</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Nostalgia Letter Studio</title>
+    <!-- Google Fonts for authentic historical typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Dancing+Script:wght@500&family=Playfair+Display:ital,wght@0,500;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+    
     <style>
-        body { 
-            font-family: 'JetBrains Mono', monospace; 
-            letter-spacing: -0.02em; 
-            background-color: #fafaf9; 
-            color: #171717;
+        :root {
+            --bg-workspace: #f4f3ef;
+            --text-dark: #2d2d2d;
+            --border-ui: #dcdad4;
         }
-        .bg-pattern {
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='30' font-family='monospace' font-size='8' fill='%23000' opacity='0.03'%3E01101001 01110100%3C/text%3E%3Ctext x='10' y='60' font-family='monospace' font-size='8' fill='%23000' opacity='0.03'%3E01101111 01101110%3C/text%3E%3C/svg%3E");
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        .wavy {
-            text-decoration: underline;
-            text-decoration-style: wavy;
-            text-decoration-color: #d4d4d4;
-            text-underline-offset: 4px;
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-workspace);
+            color: var(--text-dark);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
         }
-        .tag { 
-            border: 1px solid #e5e5e5; 
-            border-radius: 6px; 
-            padding: 2px 8px; 
-            font-size: 0.7rem; 
-            text-transform: uppercase; 
-            color: #737373; 
+
+        /* Sidebar Control Panel */
+        .control-panel {
+            width: 380px;
+            background: #ffffff;
+            border-right: 1px solid var(--border-ui);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            overflow-y: auto;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.02);
+        }
+
+        .studio-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            border-bottom: 2px solid #e0dfd9;
+            padding-bottom: 0.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666;
+        }
+
+        textarea {
+            width: 100%;
+            height: 180px;
+            padding: 0.75rem;
+            border: 1px solid var(--border-ui);
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            resize: none;
+            background: #fafafa;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        textarea:focus {
+            border-color: #999;
+        }
+
+        select, input[type="range"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-ui);
+            border-radius: 6px;
+            background: #fff;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .download-btn {
+            margin-top: auto;
+            background: #2d2d2d;
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .download-btn:hover {
+            background: #454545;
+        }
+
+        /* Live Preview Area */
+        .preview-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            overflow: auto;
+        }
+
+        /* The Paper Box */
+        .letter-paper {
+            width: 450px;
+            height: 600px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Paper Styles Configuration */
+        .theme-parchment {
+            background: radial-gradient(circle, #f5ecd6 60%, #e3d2b3 100%);
+            border: 1px solid #d0be9b;
+            box-shadow: inset 0 0 40px rgba(139,94,41,0.15), 0 10px 30px rgba(0,0,0,0.08);
+            color: #3d2a1c;
+        }
+
+        .theme-typewriter {
+            background: #fcfbfa;
+            border: 1px solid #e3e1db;
+            background-image: linear-gradient(#e1effa 1px, transparent 1px);
+            background-size: 100% 28px;
+            color: #111111;
+            padding-top: 3.5rem;
+        }
+        .theme-typewriter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50px;
+            width: 1px;
+            height: 100%;
+            background-color: #ffb3b3;
+        }
+
+        .theme-victorian {
+            background: #fffaf2;
+            border: 12px double #d4af37;
+            color: #2b2015;
+        }
+
+        .theme-noir {
+            background: #16161a;
+            border: 1px solid #24242e;
+            color: #00f0ff;
+            text-shadow: 0 0 5px rgba(0,240,255,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        /* Hidden export canvas */
+        #exportCanvas {
+            display: none;
         }
     </style>
 </head>
-<body class="bg-pattern min-h-screen">
+<body>
 
-    <div class="max-w-xl mx-auto px-6 py-20">
+    <div class="control-panel">
+        <h1 class="studio-title">Letter Studio</h1>
         
-        <header class="mb-12">
-            <div class="flex justify-between items-baseline mb-4">
-                <h1 class="text-xl font-medium">kruthik reddy</h1>
-                <span class="text-xs opacity-50 uppercase tracking-widest">(Hyderabad, India)</span>
-            </div>
-            <div class="flex gap-2 mb-6">
-                <span class="tag">MPC STUDENT</span>
-                <span class="tag">BUILDER</span>
-                <span class="tag">17 Y/O</span>
-            </div>
-            <p class="text-lg italic font-medium">ships really <span class="not-italic font-bold">fast.</span></p>
-        </header>
+        <div class="form-group">
+            <label for="letterText">Your Message</label>
+            <textarea id="letterText" placeholder="Write something timeless...">Dearest Friend,
 
-        <section class="mb-12">
-            <h2 class="font-bold mb-4">today</h2>
-            <div class="space-y-4 leading-relaxed">
-                <p>I'm a builder in disguise. Currently an 11th-grade MPC student grinding through physics problems and calculus limits.</p>
-                <p>In reality, I’m running simulations about wealth, leverage, and how to <span class="wavy">bend the internet to my will</span>.</p>
-                <p>I built my own <span class="wavy">dark-aesthetic website</span> with AI chat and productivity tools because I like control.</p>
-            </div>
-        </section>
+Some notes are meant to outlive the digital screens we type them on. There is a quiet magic in taking the time to let words breathe on paper.
 
-        <section class="mb-12">
-            <h2 class="font-bold mb-4">past</h2>
-            <div class="space-y-3">
-                <div class="flex items-center gap-2">
-                    <span class="opacity-30 text-[10px]">●</span>
-                    <span><span class="wavy">Bhashyam Blooms</span>, 10th Grade (Class of 2025)</span>
-                </div>
-            </div>
-        </section>
+May this find you well.
 
-        <section class="mb-12">
-            <h2 class="font-bold mb-4">personal projects</h2>
-            <div class="space-y-6">
-                <div>
-                    <div class="flex justify-between items-center border-b border-neutral-200 pb-2 mb-2">
-                        <a href="https://kruthikreddy5.github.io/Kruthik-Arena-/" target="_blank" class="font-medium hover:text-blue-600 transition underline underline-offset-4 decoration-neutral-200">kruthik arena</a>
-                        <div class="flex gap-2">
-                            <span class="tag">LIVE</span> <span class="tag">HUB</span>
-                        </div>
-                    </div>
-                    <p class="text-xs opacity-60">A centralized project hub and testing ground for my web experiments.</p>
-                </div>
+Yours truly,
+A Kindred Soul</textarea>
+        </div>
 
-                <div>
-                    <div class="flex justify-between items-center border-b border-neutral-200 pb-2 mb-2">
-                        <span class="font-medium">the control center</span>
-                        <div class="flex gap-2">
-                            <span class="tag">AI</span> <span class="tag">SYSTEMS</span>
-                        </div>
-                    </div>
-                    <p class="text-xs opacity-60">A suite with AI chat and focus timers designed for high-leverage work.</p>
-                </div>
-            </div>
-        </section>
+        <div class="form-group">
+            <label for="paperTheme">Paper Variety</label>
+            <select id="paperTheme">
+                <option value="parchment">Aged Parchment</option>
+                <option value="typewriter">Classic Notebook Stock</option>
+                <option value="victorian">Victorian Border</option>
+                <option value="noir">Midnight Noir</option>
+            </select>
+        </div>
 
-        <section class="mb-20">
-            <h2 class="font-bold mb-4">connect</h2>
-            <div class="space-y-3">
-                <div class="flex items-center gap-2">
-                    <span class="text-xs opacity-50 w-6">IG</span>
-                    <a href="https://instagram.com/kruthikreddy_" target="_blank" class="wavy hover:text-black transition">kruthikreddy_</a>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="text-xs opacity-50 w-6">EM</span>
-                    <a href="mailto:kruthikreddy5850@gmail.com" class="wavy hover:text-black transition">kruthikreddy5850@gmail.com</a>
-                </div>
-            </div>
-        </section>
+        <div class="form-group">
+            <label for="fontStyle">Typography</label>
+            <select id="fontStyle">
+                <option value="cursive">Elegant Script</option>
+                <option value="typewriterFont">Mechanical Typewriter</option>
+                <option value="serif">Classic Serif</option>
+            </select>
+        </div>
 
-        <footer class="pt-8 opacity-20 text-[10px] uppercase tracking-[0.2em]">
-            © 2026 KRUTHIK REDDY — MADE IN HYD
-        </footer>
+        <div class="form-group">
+            <label for="fontSize">Font Size</label>
+            <input type="range" id="fontSize" min="16" max="32" value="22">
+        </div>
 
+        <button class="download-btn" id="downloadBtn">Download Raw Image</button>
     </div>
 
+    <div class="preview-container">
+        <div id="letterPaper" class="letter-paper theme-parchment"></div>
+    </div>
+
+    <!-- Hidden canvas used purely to handle high-res rendering calculations on export -->
+    <canvas id="exportCanvas" width="800" height="1066"></canvas>
+
+    <script>
+        const letterTextInput = document.getElementById('letterText');
+        const paperThemeInput = document.getElementById('paperTheme');
+        const fontStyleInput = document.getElementById('fontStyle');
+        const fontSizeInput = document.getElementById('fontSize');
+        const letterPaper = document.getElementById('letterPaper');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const canvas = document.getElementById('exportCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Font Mapping Object
+        const fontMap = {
+            cursive: "'Dancing Script', cursive",
+            typewriterFont: "'Special Elite', monospace",
+            serif: "'Playfair Display', serif"
+        };
+
+        const canvasFontMap = {
+            cursive: "Dancing Script",
+            typewriterFont: "Special Elite",
+            serif: "Playfair Display"
+        };
+
+        // Sync visual UI elements
+        function updatePreview() {
+            const text = letterTextInput.value;
+            const theme = paperThemeInput.value;
+            const font = fontStyleInput.value;
+            const size = fontSizeInput.value;
+
+            letterPaper.textContent = text;
+            
+            // Manage theme class mutations
+            letterPaper.className = 'letter-paper'; 
+            letterPaper.classList.add(`theme-${theme}`);
+            
+            // Target typographic styling rules
+            letterPaper.style.fontFamily = fontMap[font];
+            letterPaper.style.fontSize = `${size}px`;
+            
+            // Tweak structural layout line-height matches for notebook lines
+            if(theme === 'typewriter') {
+                letterPaper.style.lineHeight = '28px';
+            } else {
+                letterPaper.style.lineHeight = '1.5';
+            }
+        }
+
+        // Draw the complex background textures down to native 2D canvas pixels on trigger
+        function generateCanvasOutput() {
+            const theme = paperThemeInput.value;
+            const font = fontStyleInput.value;
+            const size = parseInt(fontSizeInput.value) * 1.6; // Scale font appropriately for high-res canvas canvas
+            const text = letterTextInput.value;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 1. Structural Paper Background Layers
+            if (theme === 'parchment') {
+                let grad = ctx.createRadialGradient(canvas.width/2, canvas.height/2, 100, canvas.width/2, canvas.height/2, 600);
+                grad.addColorStop(0, '#f5ecd6');
+                grad.addColorStop(1, '#e3d2b3');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Vignette frame overlay
+                ctx.strokeStyle = 'rgba(139,94,41,0.2)';
+                ctx.lineWidth = 20;
+                ctx.strokeRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#3d2a1c';
+            } 
+            else if (theme === 'typewriter') {
+                ctx.fillStyle = '#fcfbfa';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Render accurate blue guide horizontal lines
+                ctx.strokeStyle = '#e1effa';
+                ctx.lineWidth = 2;
+                for (let i = 80; i < canvas.height; i += 45) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, i);
+                    ctx.lineTo(canvas.width, i);
+                    ctx.stroke();
+                }
+                // Vertical pink margin alignment guide
+                ctx.strokeStyle = '#ffb3b3';
+                ctx.beginPath();
+                ctx.moveTo(90, 0);
+                ctx.lineTo(90, canvas.height);
+                ctx.stroke();
+                
+                ctx.fillStyle = '#111111';
+            } 
+            else if (theme === 'victorian') {
+                ctx.fillStyle = '#fffaf2';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Heavy Double-Line Ornate Border accents
+                ctx.strokeStyle = '#d4af37';
+                ctx.lineWidth = 8;
+                ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60);
+                ctx.lineWidth = 3;
+                ctx.strokeRect(45, 45, canvas.width - 90, canvas.height - 90);
+                
+                ctx.fillStyle = '#2b2015';
+            } 
+            else if (theme === 'noir') {
+                ctx.fillStyle = '#16161a';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#00f0ff';
+                ctx.shadowColor = '#00f0ff';
+                ctx.shadowBlur = 8;
+            }
+
+            // 2. Compute Typographic Layout & Print Text
+            const fontName = canvasFontMap[font];
+            ctx.font = `${size}px "${fontName}"`;
+            
+            const startX = theme === 'typewriter' ? 120 : 70;
+            let startY = theme === 'typewriter' ? 120 : 90;
+            const maxWidth = canvas.width - (startX + 70);
+            const lineHeight = theme === 'typewriter' ? 45 : size * 1.4;
+
+            const paragraphs = text.split('\n');
+            
+            paragraphs.forEach(para => {
+                if (para === '') {
+                    startY += lineHeight;
+                    return;
+                }
+                
+                let words = para.split(' ');
+                let line = '';
+
+                for (let n = 0; n < words.length; n++) {
+                    let testLine = line + words[n] + ' ';
+                    let metrics = ctx.measureText(testLine);
+                    if (metrics.width > maxWidth && n > 0) {
+                        ctx.fillText(line, startX, startY);
+                        line = words[n] + ' ';
+                        startY += lineHeight;
+                    } else {
+                        line = testLine;
+                    }
+                }
+                ctx.fillText(line, startX, startY);
+                startY += lineHeight;
+            });
+
+            // Reset shadows for safety
+            ctx.shadowBlur = 0;
+
+            // 3. Complete Action: Force File Download pipeline
+            const link = document.createElement('a');
+            link.download = 'nostalgic-letter.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // Event Trigger Handlers
+        letterTextInput.addEventListener('input', updatePreview);
+        paperThemeInput.addEventListener('change', updatePreview);
+        fontStyleInput.addEventListener('change', updatePreview);
+        fontSizeInput.addEventListener('input', updatePreview);
+        downloadBtn.addEventListener('click', generateCanvasOutput);
+
+        // Run setup sequence on initialization
+        window.addEventListener('DOMContentLoaded', () => {
+            // Ensure Google Web Fonts have initialized before starting layout calculations
+            setTimeout(updatePreview, 500);
+        });
+    </script>
 </body>
-    </html>
-    
+</html>
